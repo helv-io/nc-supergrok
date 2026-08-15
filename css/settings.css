@@ -1,0 +1,36 @@
+#supergrok-personal,
+#supergrok-admin {
+	max-width: 44em;
+}
+
+#supergrok-personal h3,
+#supergrok-admin h3 {
+	margin-top: 1.5em;
+}
+
+.supergrok-user-code {
+	font-family: monospace;
+	font-size: 1.6em;
+	letter-spacing: 0.12em;
+	font-weight: 700;
+}
+
+.supergrok-input {
+	width: 100%;
+	max-width: 36em;
+	display: block;
+	margin-top: 0.3em;
+}
+
+.supergrok-error {
+	color: var(--color-error, #e9322d);
+	margin-top: 1em;
+}
+
+.supergrok-status {
+	margin-top: 1em;
+}
+
+.supergrok-panel {
+	margin-top: 1em;
+}

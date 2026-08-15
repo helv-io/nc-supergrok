@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>supergrok</id>
+	<name>SuperGrok OAuth</name>
+	<summary>Conversation, Voice, and Imagine in Nextcloud. Sign in with SuperGrok / X Premium+. No API key. SpaceXAI.</summary>
+	<description><![CDATA[Nextcloud SuperGrok OAuth. Conversation, Voice, Imagine. Sign in with SuperGrok / X Premium+. No API key. SpaceXAI.
+
+Device code is the default sign-in. Browser paste-callback (`http://127.0.0.1:56121/callback`) is the backup.
+
+This app registers Task Processing providers for Nextcloud Assistant, Talk AI, and other consumers:
+
+* Conversation: TextToText and TextToTextChat
+* Imagine: TextToImage
+* Voice: AudioToText (STT) and TextToSpeech (TTS)
+* Assistant buttons: summary, headline, topics, reformulation, change tone, proofread, context write, emoji, translate
+
+Clone or download this repository into `nextcloud/apps/supergrok` (the folder name must be `supergrok`), then run `occ app:enable supergrok`. Sign in under Personal settings.
+]]></description>
+	<version>0.1.0</version>
+	<licence>agpl</licence>
+	<author mail="helvio88@gmail.com" homepage="https://helv.io">SpaceXAI</author>
+	<namespace>SuperGrok</namespace>
+	<category>integration</category>
+	<category>ai</category>
+	<website>https://github.com/helv-io/nc-supergrok</website>
+	<bugs>https://github.com/helv-io/nc-supergrok/issues</bugs>
+	<repository>https://github.com/helv-io/nc-supergrok</repository>
+	<dependencies>
+		<php min-version="8.1" max-version="8.4"/>
+		<nextcloud min-version="32" max-version="34"/>
+	</dependencies>
+	<settings>
+		<admin>OCA\SuperGrok\Settings\Admin</admin>
+		<personal>OCA\SuperGrok\Settings\Personal</personal>
+	</settings>
+</info>
