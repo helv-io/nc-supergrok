@@ -1,0 +1,11 @@
+.idea/
+.vscode/
+vendor/
+vendor-bin/
+node_modules/
+.php-cs-fixer.cache
+.phpunit.result.cache
+*.swp
+*~
+.DS_Store
+.env

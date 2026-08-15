@@ -1,0 +1,35 @@
+name: lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+      - name: PHP syntax
+        run: find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+      - name: info.xml and appid sanity
+        run: |
+          set -euo pipefail
+          test -f appinfo/info.xml
+          grep -q '<id>supergrok</id>' appinfo/info.xml
+          grep -q '<namespace>SuperGrok</namespace>' appinfo/info.xml
+          grep -q '<licence>agpl</licence>' appinfo/info.xml
+          grep -q '<nextcloud min-version="32" max-version="34"/>' appinfo/info.xml
+          id="$(sed -n 's/.*<id>\(.*\)<\/id>.*/\1/p' appinfo/info.xml | head -1)"
+          echo "$id" | grep -Eq '^[a-z0-9_]+$'
+          test "$id" = "supergrok"
+          test ! -d vendor
+      - name: no em dashes
+        run: |
+          if grep -R -n $'\u2014' --exclude-dir=.git --exclude-dir=.idea .; then
+            echo "Em dash found"
+            exit 1
+          fi
