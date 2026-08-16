@@ -27,6 +27,22 @@ jobs:
           echo "$id" | grep -Eq '^[a-z0-9_]+$'
           test "$id" = "supergrok"
           test ! -d vendor
+      - name: route names match controller classes
+        run: |
+          php -r '
+          $routes = require "appinfo/routes.php";
+          $fail = 0;
+          foreach ($routes["routes"] as $route) {
+            [$controller] = explode("#", $route["name"], 2);
+            $class = preg_replace_callback("/_[a-z]?/", fn ($m) => strtoupper(ltrim($m[0], "_")), ucfirst($controller)) . "Controller";
+            $file = "lib/Controller/" . $class . ".php";
+            if (!is_file($file)) {
+              fwrite(STDERR, "Route {$route["name"]} expects {$file}\n");
+              $fail = 1;
+            }
+          }
+          exit($fail);
+          '
       - name: no em dashes
         run: |
           if grep -R -n $'\u2014' --exclude-dir=.git --exclude-dir=.idea .; then

@@ -17,7 +17,7 @@ This app registers Task Processing providers for Nextcloud Assistant, Talk AI, a
 
 Clone or download this repository into `nextcloud/apps/supergrok` (the folder name must be `supergrok`), then run `occ app:enable supergrok`. Sign in under Personal settings.
 ]]></description>
-	<version>0.1.0</version>
+	<version>0.1.1</version>
 	<licence>agpl</licence>
 	<author mail="helvio88@gmail.com" homepage="https://helv.io">SpaceXAI</author>
 	<namespace>SuperGrok</namespace>

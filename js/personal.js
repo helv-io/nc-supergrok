@@ -177,6 +177,10 @@
 			body: encoded.toString(),
 			credentials: 'same-origin',
 		}).then(function (response) {
+			const contentType = response.headers.get('content-type') || ''
+			if (contentType.indexOf('application/json') === -1) {
+				throw new Error(t(appId, 'Request failed ({status})').replace('{status}', String(response.status)))
+			}
 			return response.json().then(function (data) {
 				if (!response.ok && data && data.message) {
 					throw new Error(data.message)
